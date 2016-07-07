@@ -22,4 +22,7 @@ EXPOSE 80
 #VOLUMES ["/var/lib/varnish", "/etc/varnish"]
 
 ADD start.sh /start.sh
+
+USER 0
+
 CMD ["/start.sh"]
