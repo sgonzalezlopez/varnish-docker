@@ -4,7 +4,7 @@ ENV REFRESHED_AT 2014-10-18
 
 # Update the package repository and install applications
 RUN apt-get update -qq && \
-  apt-get upgrade -yqq && \
+#  apt-get upgrade -yqq && \
   apt-get -yqq install varnish && \
   apt-get -yqq clean
 
