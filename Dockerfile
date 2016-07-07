@@ -3,10 +3,10 @@ MAINTAINER  Love Nyberg "love.nyberg@lovemusic.se"
 ENV REFRESHED_AT 2014-10-18
 
 # Update the package repository and install applications
-RUN apt-get update -qq && \
+RUN apt-get update && \
 #  apt-get upgrade -yqq && \
-  apt-get -yqq install varnish && \
-  apt-get -yqq clean
+  apt-get install varnish && \
+  apt-get clean
 
 # Make our custom VCLs available on the container
 ADD default.vcl /etc/varnish/default.vcl
