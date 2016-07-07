@@ -25,4 +25,5 @@ ADD start.sh /start.sh
 
 RUN chmod -R 777 /etc/varnish
 
-CMD ["/start.sh"]
+#CMD ["/start.sh"]
+CMD ["/bin/bash"]
