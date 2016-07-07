@@ -23,6 +23,6 @@ EXPOSE 80
 
 ADD start.sh /start.sh
 
-USER 0
+RUN chmod -R 777 /etc/varnish
 
 CMD ["/start.sh"]
