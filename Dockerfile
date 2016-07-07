@@ -23,7 +23,8 @@ EXPOSE 80
 
 ADD start.sh /start.sh
 
-RUN chmod -R 777 /etc/varnish
+RUN chmod -R 777 /etc/varnish \
+ && chmod -R 777 /var/lib/varnish
 
 #CMD ["/start.sh"]
 ENTRYPOINT ["/bin/bash"]
