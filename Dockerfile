@@ -1,32 +1,25 @@
-FROM        ubuntu:14.04.2
-MAINTAINER  Love Nyberg "love.nyberg@lovemusic.se"
-ENV REFRESHED_AT 2014-10-18
-#ENV http_proxy http://10.185.4.54:3128
+FROM        openshift/base-centos7
+MAINTAINER  Sergio Gonzalez "sergio.l.gonzalez@axa-medla.com"
+
 # Update the package repository and install applications
-RUN apt-get update -y && \
-#  apt-get upgrade -yqq && \
-  apt-get install varnish -y && \
-  apt-get clean -y
+RUN yum update -y && \
+  yum install varnish -y
 
 # Make our custom VCLs available on the container
 ADD default.vcl /etc/varnish/default.vcl
 
-ENV VARNISH_BACKEND_PORT 80
+ENV VARNISH_BACKEND_PORT 8080
 ENV VARNISH_BACKEND_IP 172.17.42.1
-ENV VARNISH_PORT 80
+ENV VARNISH_PORT 8080
 
-# Expose port 80
-EXPOSE 80
-
-# Expose volumes to be able to use data containers
-#VOLUMES ["/var/lib/varnish", "/etc/varnish"]
-
-ADD start.sh /start.sh
+EXPOSE 8080
 
 RUN chmod -R 777 /etc/varnish \
  && chmod -R 777 /var/lib/varnish
 
-USER 0
+ADD start.sh /start.sh
+RUN chmod +x /start.sh
+
 
 CMD ["/start.sh"]
-#ENTRYPOINT ["/bin/bash"]
+
